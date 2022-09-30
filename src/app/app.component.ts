@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'testangular';
+  showSideMenu: boolean = false;
+
+  hideMenu(){
+    this.showSideMenu = !this.showSideMenu;
+  }
+
+
 }
