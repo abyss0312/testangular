@@ -12,7 +12,7 @@ import { addUser, selectedUser, UserState } from 'src/app/state';
 })
 export class LoginComponent implements OnInit {
 
-  testResult$: Observable<number> = new Observable()
+  testResult$: Observable<UserState> = new Observable()
 
    
 
@@ -30,16 +30,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.testResult$ = this.store.select(selectedUser);
+    console.log(this.loginForm.get('email'));
     console.log('test')
   }
 
   onSubmit():void{
-    console.log(this.loginForm.get('email'));
-    this.store.dispatch(addUser({
+
+    const user:UserState = {
       id:1,
       username:'test',
-      token:"jejaj"
-    }))
+      token:'adwad'
+    }
+    console.log(this.loginForm.value);
+    this.store.dispatch(addUser(user))
   }
 
 }
