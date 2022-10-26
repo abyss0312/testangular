@@ -39,7 +39,8 @@ export class LoginComponent implements OnInit {
     const user:UserState = {
       id:1,
       username:'test',
-      token:'adwad'
+      token:'adwad',
+      isValidate:false
     }
     console.log(this.loginForm.value);
     this.store.dispatch(addUser(user))
