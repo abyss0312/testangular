@@ -4,7 +4,7 @@ import {MatMenuModule} from '@angular/material/menu'
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { UserState, userValidate } from 'src/app/state';
+import { removeUser, UserState, userValidate } from 'src/app/state';
 
 @Component({
   selector: 'app-header',
@@ -22,6 +22,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
 
     this.isLogged$ = this.store.select(userValidate);
+  }
+
+  logout():void{
+
+    this.store.dispatch(removeUser());
   }
 
 }

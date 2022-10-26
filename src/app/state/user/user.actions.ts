@@ -8,4 +8,4 @@ export const addUser = createAction(
 
 
 
-export const removeUser = createAction('[component sidebar log out',);
+export const removeUser = createAction('[component sidebar] log out',);
