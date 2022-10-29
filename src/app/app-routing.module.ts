@@ -4,6 +4,10 @@ import { AuthenticationGuard } from './auth/authentication.guard';
 
 const routes: Routes = [
   {
+    path:'',
+    loadChildren: () => import('./pages').then(m => m.HomeModule),
+  },
+  {
     path:"login",
     loadChildren: () => import('./pages').then(m => m.LoginModule)
   },
@@ -11,7 +15,6 @@ const routes: Routes = [
     path:"profile",
     loadChildren:() => import('./pages').then(m => m.ProfileModule),
     canActivate: [AuthenticationGuard]
-
   },
   {
     path:"**",

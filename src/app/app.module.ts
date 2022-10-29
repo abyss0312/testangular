@@ -9,6 +9,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { StoreModule } from '@ngrx/store';
 import { userReducer } from './state/user/user.reducer';
 import { EffectsModule } from '@ngrx/effects';
+import { HttpModule } from './shared';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserAnimationsModule,
     HeaderComponent,
     HttpClientModule,
+    HttpModule.forRoot({ environment }),
     StoreModule.forRoot({user:userReducer}, {}),
     EffectsModule.forRoot([]),
   ],

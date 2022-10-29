@@ -1,0 +1,35 @@
+
+<section class="min-h-screen body-font text-gray-600 ">
+    <div class="container mx-auto px-5 py-10">
+      <div class="-m-4 flex flex-wrap" *ngIf="categories.length > 0">
+        <div class="w-full p-4 md:w-1/2 lg:w-1/4"  *ngFor="let category of categories  " >
+          <div class="relative flex flex-col justify-end overflow-hidden rounded-b-xl pt-6">
+            <div class="group relative flex cursor-pointer justify-between rounded-xl bg-amber-200 before:absolute before:inset-y-0 before:right-0 before:w-1/2 before:rounded-r-xl before:bg-gradient-to-r before:from-transparent before:to-amber-600 before:opacity-0 before:transition before:duration-500 hover:before:opacity-100">
+            <div class="relative  space-y-1 p-4">
+                <h4 class="text-lg text-amber-900">{{category.attributes.name}}</h4>
+                <div class="relative h-7 text-amber-800 text-sm">
+                
+                <a href="" class="flex items-center gap-3 invisible absolute left-0 top-0 translate-y-3 transition duration-300 group-hover:visible group-hover:translate-y-0">
+                    <span>Ver</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 -translate-x-4 transition duration-300 group-hover:translate-x-0" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+                </div>
+            </div>
+            <img class="absolute bottom-0 right-6 w-[6rem] transition duration-300 group-hover:scale-[1.4]" src="http://localhost:1337/uploads/thumbnail_camisa_trabajo_manga_larga_de_algodon_uniforma_8aabad808e.jpeg" alt="" />
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="categories.length == 0"> 
+
+        <h2>No hay categorias Disponibles</h2>
+
+    </div>
+    </div>
+    </section>
+
+
