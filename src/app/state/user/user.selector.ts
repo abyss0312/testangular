@@ -13,5 +13,5 @@ export const selectedUser = createSelector(
 )
 export const userValidate = createSelector(
     selectUser,
-    (state:UserState) => state.isValidate
+    (state:UserState) => state.isActive
 )

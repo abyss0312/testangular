@@ -1,4 +1,10 @@
-import { ListGenericModel } from "./listGeneric.interface";
 
 
-export interface CategoryModel extends ListGenericModel{}
+
+export interface CategoryModel {
+
+    id:number;
+    name:string;
+    image:string;
+    createdDate:string;
+}

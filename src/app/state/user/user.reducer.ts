@@ -8,14 +8,14 @@ export interface UserState  {
     id: number,
     username:string,
     token:string,
-    isValidate:boolean
+    isActive:boolean
 }
 
  const initialState: UserState = {
     id:0,
     username:"",
     token:"",
-    isValidate:false
+    isActive:false
  }
 
  export const userReducer = createReducer(
@@ -25,8 +25,8 @@ export interface UserState  {
         id:id,
         username:username,
         token:token,
-        isValidate:true
+        isActive:true
     })),
     
-    on(removeUser, state => ({ id: 0, username: "", token:"" ,isValidate:false})),
+    on(removeUser, state => ({ id: 0, username: "", token:"" ,isActive:false})),
  )

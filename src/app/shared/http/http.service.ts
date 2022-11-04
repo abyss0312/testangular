@@ -24,5 +24,11 @@ export class HttpService {
       catchError(this.handleError)
     );
   }
+
+  postOne<T>(path: string, body:any): Observable<T> {
+    return this.http.post<T>(`${this.apiUrl}${path}`,body).pipe(
+      catchError(this.handleError)
+    );
+  }
   
 }

@@ -13,6 +13,8 @@ export class CategoryService {
 
 
   getCategories():Observable<GenericResponse<CategoryModel[]>>{
-    return this.http.getAll<GenericResponse<CategoryModel[]>>('/categories?populate=*');
+    return this.http.getAll<GenericResponse<CategoryModel[]>>('/category');
   }
+
+  
 }
