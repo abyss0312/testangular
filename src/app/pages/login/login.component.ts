@@ -47,5 +47,4 @@ export class LoginComponent implements OnInit {
 
     this.store.dispatch(loginUser({user}))
   }
-
 }
