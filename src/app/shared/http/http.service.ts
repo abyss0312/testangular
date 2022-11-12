@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, SkipSelf } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { EnvironmentConfig, ENV_CONFIG } from './environment-config.interface';
 
@@ -9,7 +9,7 @@ import { EnvironmentConfig, ENV_CONFIG } from './environment-config.interface';
 export class HttpService {
   private apiUrl: string;
 
-  constructor(@Inject(ENV_CONFIG) private config: EnvironmentConfig, private http: HttpClient) {
+  constructor(@Inject(ENV_CONFIG) private config: EnvironmentConfig,  private http: HttpClient) {
     this.apiUrl = `${config.environment.baseUrl}`;
   }
 

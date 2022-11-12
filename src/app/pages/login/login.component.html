@@ -5,7 +5,7 @@
         <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Iniciar Session</h2>
         <p class="mt-2 text-center text-sm text-gray-600">
           O
-          <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Registarse</a>
+          <a routerLink="/register" class="font-medium text-indigo-600 hover:text-indigo-500">Registarse</a>
         </p>
       </div>
       <form class="mt-8 space-y-6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -15,7 +15,7 @@
             <label for="email-address" class="sr-only">Email address</label>
             <input id="email-address" name="username" type="text" autocomplete="username" required class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Entre su usuario" formControlName="username">
             <span *ngIf="this.loginForm.get('username')?.status == 'INVALID' && this.loginForm.get('username')?.touched == true " 
-            class="requiredform">*este campo no debe estar vacioß</span>
+            class="requiredform">*este campo no debe estar vacio</span>
           </div>
           <div>
             <label for="password" class="sr-only">Password</label>
@@ -51,5 +51,5 @@
     </div>
   </div>
 
-    {{(testResult$ |async)?.id}}
+
   

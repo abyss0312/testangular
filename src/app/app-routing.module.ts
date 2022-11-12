@@ -17,6 +17,10 @@ const routes: Routes = [
     canActivate: [AuthenticationGuard]
   },
   {
+    path:"register",
+    loadChildren:() => import('./pages').then(m => m.RegisterModule),
+  },
+  {
     path:"**",
     loadChildren:() => import('./pages').then(m => m.NotFoundModule)
   }

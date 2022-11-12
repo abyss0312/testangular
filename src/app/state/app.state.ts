@@ -1,6 +1,7 @@
-import { UserState } from "./user/user.reducer";
+import { UserStore } from "../models/user.interface";
+
 
 
 export interface AppState{
-    user: UserState
+    user: UserStore
 }

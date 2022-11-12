@@ -1,6 +1,7 @@
 import { createSelector } from "@ngrx/store";
+import { UserStore } from "src/app/models";
 import { AppState } from "../app.state";
-import { UserState } from "./user.reducer";
+
 
 
 
@@ -9,9 +10,9 @@ import { UserState } from "./user.reducer";
 const selectUser = (state:AppState) => state.user;
 export const selectedUser = createSelector(
     selectUser,
-    (state:UserState) => state
+    (state:UserStore) => state
 )
 export const userValidate = createSelector(
     selectUser,
-    (state:UserState) => state.isActive
+    (state:UserStore) => state.isActive
 )

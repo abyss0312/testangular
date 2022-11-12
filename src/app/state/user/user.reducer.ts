@@ -1,17 +1,13 @@
 import { createReducer, on } from "@ngrx/store"
+import { UserStore } from "src/app/models"
 import { addUser, removeUser } from "./user.actions"
 
 
 
 
-export interface UserState  {
-    id: number,
-    username:string,
-    token:string,
-    isActive:boolean
-}
 
- const initialState: UserState = {
+
+ const initialState: UserStore = {
     id:0,
     username:"",
     token:"",

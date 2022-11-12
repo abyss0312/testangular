@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { AuthenticationService } from 'src/app/auth';
-import { GenericResponse } from 'src/app/models/GenericResponse.interface';
-import { LoginFormModel } from 'src/app/models/user.interface';
-import { HttpService } from 'src/app/shared';
-import { addUser, selectedUser, UserState } from 'src/app/state';
+import { LoginFormModel, UserStore } from 'src/app/models/user.interface';
+import { EncryptionService } from 'src/app/shared/encryption.service';
+import { loginUser } from 'src/app/state';
+
 
 
 @Component({
@@ -16,15 +14,14 @@ import { addUser, selectedUser, UserState } from 'src/app/state';
 })
 export class LoginComponent implements OnInit {
 
-  testResult$: Observable<UserState> = new Observable()
 
    
 
   constructor(
     private formBuilder:FormBuilder,
-   // private readonly store: Store<{user: UserState}>,
-    private authService: AuthenticationService,
-    private httpService:HttpService
+   private readonly store: Store<{user: UserStore}>,
+   private encryptService:EncryptionService
+  
   ) { }
 
   loginForm = this.formBuilder.group({
@@ -34,28 +31,21 @@ export class LoginComponent implements OnInit {
 
   
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
 
-    const user:LoginFormModel = {
-      username:this.loginForm.value.username!,
-      password:this.loginForm.value.password!
-    }
-    this.httpService.postOne<GenericResponse<string>>('/auth/login',user);
-    //this.testResult$ = this.store.select(selectedUser);
-    console.log(this.loginForm.get('email'));
-    console.log('test')
   }
 
-  onSubmit():void{
+   async onSubmit():Promise<void>{
 
    
-    console.log(this.loginForm.value);
+    const pass = await this.encryptService.encryptText(this.loginForm.value.password!);
+    
+    const user:LoginFormModel = {
+      username:this.loginForm.value.username!,
+      password:pass
+    }
 
-
-    //const result = this.authService.Login(user);
-    //this.httpService.postOne<GenericResponse<string>>('/auth/login',user);
-
-   // this.store.dispatch(addUser(user))
+    this.store.dispatch(loginUser({user}))
   }
 
 }

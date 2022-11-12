@@ -11,6 +11,7 @@ import { userReducer } from './state/user/user.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpModule } from './shared';
 import { environment } from 'src/environments/environment';
+import { UserEffects } from './state';
 
 
 @NgModule({
@@ -20,13 +21,13 @@ import { environment } from 'src/environments/environment';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HeaderComponent,
-    HttpClientModule,
     HttpModule.forRoot({ environment }),
     StoreModule.forRoot({user:userReducer}, {}),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([UserEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

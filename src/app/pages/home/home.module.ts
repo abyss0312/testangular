@@ -12,7 +12,6 @@ import { CategoryService } from 'src/app/service';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    CommonModule
   ],
   providers:[CategoryService]
 })

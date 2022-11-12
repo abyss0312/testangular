@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, SkipSelf } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GenericResponse } from '../models/GenericResponse.interface';
 import { LoginFormModel } from '../models/user.interface';
 import { HttpService } from '../shared';
+import { EncryptionService } from '../shared/encryption.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +11,12 @@ import { HttpService } from '../shared';
 export class AuthenticationService {
 
   constructor(
-    private httpService:HttpService
+      private httpService:HttpService,
   ) { }
 
 
   login(user: LoginFormModel){
 
-    user.password = `test123${user.password}`;
-    console.log('ada');
-
-      this.httpService.postOne<GenericResponse<string>>('/auth/login',user);
+      return this.httpService.postOne<GenericResponse<string>>('/auth/login',user);
   }
 }
