@@ -9,7 +9,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { StoreModule } from '@ngrx/store';
 import { userReducer } from './state/user/user.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { HttpModule } from './shared';
+import { AlertService, HttpModule } from './shared';
 import { environment } from 'src/environments/environment';
 import { UserEffects } from './state';
 

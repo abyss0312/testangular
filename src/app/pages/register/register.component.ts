@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Signup, UserStore } from 'src/app/models';
+import { AlertService, EncryptionService } from 'src/app/shared';
+import { signupUser } from 'src/app/state';
 
 @Component({
   selector: 'app-register',
@@ -10,27 +14,38 @@ export class RegisterComponent implements OnInit {
 
 
   constructor(
-    private formBuilder:FormBuilder
+    private readonly store: Store<{user: UserStore}>,
+    private encryptService:EncryptionService,
+    private alertService:AlertService
   ) { }
 
-  signupForm = this.formBuilder.group({
+  signupForm = new FormGroup({
     firstname:new FormControl('',[Validators.required]),
     lastname: new FormControl('',[Validators.required]),
     birth: new FormControl('',[Validators.required]),
     username: new FormControl('',[Validators.required]),
     pass: new FormControl('',[Validators.required,Validators.minLength(6)]),
     confPass: new FormControl('',[Validators.required])
-  },
-  { validator: this.matchPassword('pass', 'confPass') });
+  },this.matchPassword('confPass','pass'));
 
 
 
   ngOnInit(): void {
   }
 
-  onSubmit(): void{
+  async onSubmit(): Promise<void>{
 
-    console.log(this.signupForm);
+    const pass = await this.encryptService.encryptText(this.signupForm.value.pass!);
+
+    const user:Signup = {
+      firstname: this.signupForm.value.firstname!,
+      lastname: this.signupForm.value.lastname!,
+      birthdate: this.signupForm.value.birth!,
+      username: this.signupForm.value.username!,
+      password: pass
+    }
+    this.store.dispatch(signupUser({user}))
+   //if(this.signupForm.status == "VALID") t
   }
 
   
@@ -40,8 +55,9 @@ export class RegisterComponent implements OnInit {
  
       const password = control.get(firstControl)?.value;
       const confirm = control.get(secondControl)?.value;
+      const touched = control.get(secondControl)?.touched;
  
-      if (password != confirm) { return { 'noMatch': true } }
+      if (password != confirm && touched == true) { return { 'noMatch': true } }
  
       return null
  

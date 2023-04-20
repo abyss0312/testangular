@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { ModuleWithProviders, NgModule } from "@angular/core";
+import { AlertService } from "../alert.service";
 import { EnvironmentConfig, ENV_CONFIG } from "./environment-config.interface";
 
 @NgModule({
@@ -13,8 +14,10 @@ import { EnvironmentConfig, ENV_CONFIG } from "./environment-config.interface";
           {
             provide: ENV_CONFIG,
             useValue: config
-          }
-        ]
+          },
+          AlertService,
+        ],
+     
       };
     }
   }

@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { LoginFormModel } from "src/app/models";
+import { LoginFormModel,Signup } from "src/app/models";
 
 
 export const addUser = createAction(
@@ -10,6 +10,11 @@ export const addUser = createAction(
 export const loginUser = createAction(
     '[loginpage] login user',
     props<{user:LoginFormModel}>()
+);
+
+export const signupUser = createAction(
+    '[signupPage] sign user',
+    props<{user:Signup}>()
 );
 
 

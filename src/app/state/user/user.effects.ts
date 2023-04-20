@@ -4,7 +4,7 @@ import { EMPTY, of, tap } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/auth';
 import { LoginFormModel } from 'src/app/models/user.interface';
-import { addUser, loginUser } from './user.actions';
+import { addUser, loginUser, signupUser } from './user.actions';
 
  
 @Injectable()
@@ -19,6 +19,14 @@ export class UserEffects {
             )
         })
     ));
+
+    signupUser$ = createEffect(() =>
+    this.actions$.pipe(
+        ofType(signupUser),
+        tap(({user}) => this.authService.signup(user).subscribe()),
+    ),{dispatch: false}
+    );
+ 
  
   constructor(
     private actions$: Actions,
